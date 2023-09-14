@@ -8,11 +8,11 @@
 
     <TextView
         android:id="@+id/nameTextView"
+        style="@style/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:text="이름"
-        style="@style/Title"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,9 +24,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
-        android:text="김재용"
         android:ellipsize="end"
         android:maxLines="1"
+        android:text="김재용"
         app:layout_constraintBaseline_toBaselineOf="@+id/nameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -49,8 +49,7 @@
         android:text="0000-00-00"
         app:layout_constraintBaseline_toBaselineOf="@+id/birthdateTextView"
         app:layout_constraintEnd_toEndOf="@+id/nameValueTextView"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        />
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -78,6 +77,15 @@
         app:layout_constraintStart_toStartOf="@+id/bloodTypeTextView"
         app:layout_constraintTop_toBottomOf="@+id/bloodTypeTextView" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_phone_24"
+        app:layout_constraintBottom_toBottomOf="@id/contactValueTextView"
+        app:layout_constraintEnd_toEndOf="@id/nameValueTextView"
+        app:layout_constraintTop_toTopOf="@id/contactValueTextView" />
+
     <TextView
         android:id="@+id/warningTextView"
         style="@style/Title"
@@ -94,8 +102,8 @@
         android:layout_height="wrap_content"
         android:text="A"
         app:layout_constraintBaseline_toBaselineOf="@+id/bloodTypeTextView"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView"
+        app:layout_constraintStart_toStartOf="@id/guideline" />
 
     <TextView
         android:id="@+id/contactValueTextView"
@@ -103,10 +111,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
+        android:layout_marginEnd="8dp"
         android:text="0000-0000-0000"
         app:layout_constraintBaseline_toBaselineOf="@id/contactTextView"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="@+id/nameValueTextView" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/warningValueTextView"
@@ -114,17 +123,34 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="주의사항"
+        app:layout_constraintBaseline_toBaselineOf="@id/warningTextView"
         app:layout_constraintEnd_toEndOf="@+id/nameValueTextView"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintBaseline_toBaselineOf="@id/warningTextView" />
+        app:layout_constraintStart_toStartOf="@id/guideline" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goInputActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_margin="36dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="36dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/goInputActivityButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+    <androidx.constraintlayout.helper.widget.Layer
+        android:id="@+id/ContactLayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="contactValueTextView,imageView"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,8 +3,10 @@ package com.example.widgetpractice
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.widgetpractice.databinding.ActivityMainBinding
 
@@ -22,6 +24,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, EditActivity::class.java)
             startActivity(intent)
 
+        }
+
+        binding.deleteButton.setOnClickListener{
+            deleteData()
+
+        }
+        binding.ContactLayer.setOnClickListener{
+             with(Intent(Intent.ACTION_VIEW)){
+                val phoneNumber = binding.contactValueTextView.text.toString().replace("-","")
+                data = Uri.parse("tel:$phoneNumber")
+                startActivity(this)
+            }
         }
 
     }
@@ -46,5 +60,14 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun deleteData(){
+        with(getSharedPreferences(USER_INFORMATION, MODE_PRIVATE).edit()){
+            clear()
+            apply()
+        }
+        getDataUiUpdate()
+        Toast.makeText(this,"초기화를 완료하였습니다!", Toast.LENGTH_SHORT).show()
     }
 }
